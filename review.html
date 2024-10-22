@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submitted Form Data</title>
+  <link rel="stylesheet" href="review.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Submitted Form Data</h1>
+    <div id="formDataDisplay"></div>
+  </div>
+  <div>
+  <button id="goToHome" class="btn">back</button>
+</div>
+<script>
+  document.getElementById("goToHome").addEventListener("click", function() {
+    window.location.href = "index.html"; // Adjust the path as needed
+  });
+</script>
+
+  <script>
+    // Get the form data from the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const formData = {
+      'Full Name': urlParams.get('name'),
+      'Email': urlParams.get('email'),
+      'Address': urlParams.get('address'),
+      'Complaint': urlParams.get('complaint')
+    };
+
+    // Display the form data on the webpage
+    const formDataDisplay = document.getElementById('formDataDisplay');
+    for (const key in formData) {
+      if (formData.hasOwnProperty(key)) {
+        const paragraph = document.createElement('p');
+        paragraph.innerHTML = `<strong>${key}:</strong> ${formData[key]}`;
+        formDataDisplay.appendChild(paragraph);
+      }
+    }
+  </script>
+</body>
+</html>
+
